@@ -1,10 +1,18 @@
 const express = require('express')
+const bodyparser = require('body-parser')
 require('dotenv').config()
 
 const app = express()
 
 // middleware
-app.use(express.json())
+app.use(
+    bodyparser.json( { limit: "30mb", extended: true }),
+    bodyparser.urlencoded( { limit: "30mb", extended: true })
+    
+)
+
+// Routes
+app.use('/points', require('./routes/points'))
 
 
 // Test
