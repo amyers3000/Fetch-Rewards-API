@@ -1,5 +1,6 @@
 
-const transactions = [ 
+let balance = 0
+let transactions = [ 
 { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" },
 { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" },
 { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" },
@@ -19,11 +20,34 @@ const PointController = {
 
     // Return all payer point balances
     getPoints : async (req,res) => {
-       res.json(payers)
+       try {
+        res.json(payers)
+       } catch (err) {
+        res.status(500).json({message: err})
+       }
     },
     // Add transactions for a specific payer and date 
-    addPoints : async (req, res) => {
-        res.send('Add Points')
+    addTransaciton : async (req, res) => {
+        try {
+            const{ payer, points, timestamp } = req.body
+            if( !payer || !points || !timestamp ){
+                return res.status(400).json({message : "Points, payer and timestamp information are required"})
+            }else if( payer === undefined || payer === null ){
+                return res.status(400).json({message : `Payer is ${payer}`})
+            }else if( points === undefined || points === null ){
+                return res.status(400).json({message : `Points are ${points}`})
+            }else if( timestamp === undefined || timestamp === null ){
+                return res.status(400).json({message : `Timestamp is ${timestamp}`})
+            }
+
+            !payers[payer] ? payers[payer] = points : payers[payer] += points
+            
+            transactions.push({"payer": payer, "points": points, "timestamp": timestamp})
+            
+            res.send("Transaction added succesfully!")
+        } catch (err) {
+            res.status(500).json({message: err})
+        }
     },
     // Spend points using rules and return list of {"payer": <string> , "points": <integer}
     // Rules:
