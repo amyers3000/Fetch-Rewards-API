@@ -15,11 +15,6 @@ app.use(
 app.use('/points', require('./routes/points'))
 
 
-// Test
-// app.get('/', (req, res) => {
-//     res.send('Home')
-// })
-
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`))
