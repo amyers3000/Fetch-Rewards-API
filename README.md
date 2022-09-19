@@ -14,7 +14,26 @@ This is a simple API to satisfy the Backend-Apprenticship coding challenge. The 
 | POST | /points/spend | Deducts points starting at the transaction with the oldest timestamp. |
 
 ## Examples 
-### Fetch Point Balances
-`GET` : `http://localhost:5000/points`
+### Fetch Points
+`GET`: `http://localhost:5000/points`
+
 Response:
-![GET_Response](GET_Response.png)
+![GET_Response](Images/GET_Response.png)
+
+### Add Transactions
+`POST`: `http://localhost:5000/points`
+
+Request:
+![POST_Request_Transaction](Images/POST_Request_Transaction.png)
+
+Response:
+![POST_Response_Transaction](Images/POST_Response_Transaction.png)
+
+### Spend Points
+`POST`: `http://localhost:5000/points/spend`
+
+Request:
+[POST_Request_Spend](Images/POST_Request_Spend.png)
+
+Response:
+[POST_Response_Spend](Images/POST_Response_Spend.png)
