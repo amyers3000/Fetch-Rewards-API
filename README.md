@@ -5,6 +5,11 @@ This is a simple API to satisfy the Backend-Apprenticship coding challenge. The 
 2. Spend points using the rules outlined in the assignment ( a payer's balance can not go negative and the points with the oldest timestamp should be spent first )
 3. Return all payer point balances
 
+## Instructions
+1. Fork and clone repo to local machine
+2. Run npm install
+3. Run npm start
+
 ## Points API
 
 | Type | Route | Description |
@@ -33,7 +38,12 @@ Response:
 `POST`: `http://localhost:5000/points/spend`
 
 Request:
-[POST_Request_Spend](Images/POST_Request_Spend.png)
+![POST_Request_Spend](Images/POST_Request_Spend.png)
 
 Response:
-[POST_Response_Spend](Images/POST_Response_Spend.png)
+![POST_Response_Spend](Images/POST_Response_Spend.png)
+
+## Tools
+ Express.js | Body-Parsar | DotEnv
+
+
