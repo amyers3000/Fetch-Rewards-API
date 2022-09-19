@@ -54,12 +54,10 @@ const PointController = {
             res.status(500).json({message: err})
         }
     },
-    // Spend points using rules and return list of {"payer": <string> , "points": <integer}
-    // Rules:
-    // We want the oldest points to be spent first (oldest based on transaction timestamp, not the order they’re received)
-    // We want no payer's points to go negative.
+    // Spend points; start with oldest transaction and make sure no payer has a negative balance
     spendPoints : async (req, res) => {
         let { points } = req.body
+        // object to keep track of spending 
         let spendingPayers = {}
         if( points === null || points === undefined || typeof points !== 'number'){
             return res.status(400).json({message : `${points} points. If correct value is displayed please verify input type is correct`})
@@ -70,12 +68,11 @@ const PointController = {
             return res.status(400).json({message : "Insuffcient point balance"})
         }
         balance -= points
-        // sort array
+        // sort transactions array by time
         transactions.sort((x, y) => {
             return new Date(x.timestamp) < new Date(y.timestamp) ? 1 : -1
         }).reverse()
-        console.log(transactions)
-        console.log(payers)
+        // loop through array updating the spendingPayers object to keep track of how much is taken from each payer
         for( let i = 0 ; i < transactions.length; i++ ){
             console.log(points)
              if( transactions[i].points === points ){
