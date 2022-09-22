@@ -13,6 +13,9 @@ app.use(
 
 // Routes
 app.use('/points', require('./routes/points'))
+app.get('*', (req, res) => {
+    res.status(404).send('404 Error')
+})
 
 
 const PORT = process.env.PORT || 8080

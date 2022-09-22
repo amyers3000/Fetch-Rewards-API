@@ -45,10 +45,11 @@ const PointController = {
             transactions.push({"payer": payer, "points": points, "timestamp": timestamp})
             // calculate balance
             balance += points
-            res.send(transactions)
+            res.json(transactions)
         } catch (err) {
             res.status(500).json({message: err})
         }
+        
     },
     // Spend points; start with oldest transaction and make sure no payer has a negative balance
     spendPoints : async (req, res) => {
@@ -71,7 +72,6 @@ const PointController = {
             }).reverse()
             // loop through array updating the spendingPayers object to keep track of how much is taken from each payer
             for( let i = 0 ; i < transactions.length; i++ ){
-                console.log(points)
                  if( transactions[i].points === points ){
                     !spendingPayers[transactions[i].payer] ? spendingPayers[transactions[i].payer] = points * -1 : spendingPayers[transactions[i].payer] -= points
                     payers[transactions[i].payer] -= points
@@ -92,7 +92,7 @@ const PointController = {
                  
             }
     
-            res.send(spendingPayers)
+            res.json(spendingPayers)
         
         } catch (error) {
             res.status(500).json({message: err})
