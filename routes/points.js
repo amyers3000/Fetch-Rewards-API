@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const PointController = require('../controllers/points')
+const { getAllPoints, addOneTransaciton, spendPoints} = require('../controllers/points')
 
 // Route to get points
-router.get('/', PointController.getPoints)
+router.get('/', getAllPoints)
 // Route to add Transactions
-router.post('/', PointController.addTransaciton)
+router.post('/', addOneTransaciton)
 // Route to spend points
-router.post('/spend', PointController.spendPoints)
+router.post('/spend', spendPoints)
 
 module.exports = router
