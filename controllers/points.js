@@ -1,11 +1,8 @@
 let balance = 0
 
-let transactions = [ 
-]
+let transactions = []
 // Payer and balances
-let payers = {
-   
-}
+let payers = {}
     // Return all payer point balances
     function getAllBalances (req,res){
        try {
