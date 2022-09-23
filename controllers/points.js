@@ -44,7 +44,6 @@ let payers = {
     }
     // Spend points; start with oldest transaction and make sure no payer has a negative balance
     function spendPoints(req, res){
-            console.log(transactions)
             try {
                 let { points } = req.body
                 // object to keep track of how much is taken from each account
